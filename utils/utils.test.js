@@ -7,10 +7,13 @@ it('should add two numbers', () => {
     expect(res)
         .toBeA('number')
         .toBe(18);
-    
-    // if (res !== 18) {
-    //     throw new Error(`Expected 18, but got ${res}.`)
-    // }
+});
+
+it('should async add two numbers', (done) => {
+    utils.asyncAdd(34, 12, (sum) => {
+        expect(sum).toBe(46).toBeA('number');
+        done(); // Need this to test all async functions
+    });
 });
 
 it('should return the square of a number', () => {
@@ -19,6 +22,13 @@ it('should return the square of a number', () => {
     expect(res)
         .toBeA('number')
         .toBe(81);
+});
+
+it('should async square a number', (done) => {
+    utils.asyncSquare(6, (res) => {
+        expect(res).toBe(36).toBeA('number');
+        done();
+    });
 });
 
 // it('should expect some values', () => {
