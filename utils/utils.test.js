@@ -2,34 +2,43 @@ const expect = require('expect');
 
 const utils = require('./utils');
 
-it('should add two numbers', () => {
-    const res = utils.add(3,15);
-    expect(res)
-        .toBeA('number')
-        .toBe(18);
-});
+describe('Utils', () => {
 
-it('should async add two numbers', (done) => {
-    utils.asyncAdd(34, 12, (sum) => {
-        expect(sum).toBe(46).toBeA('number');
-        done(); // Need this to test all async functions
+    describe('#adding', () => { // using just add gives me a weird highlight
+        it('should add two numbers', () => {
+            const res = utils.add(3,15);
+            expect(res)
+                .toBeA('number')
+                .toBe(18);
+        });
+        
+        it('should async add two numbers', (done) => {
+            utils.asyncAdd(34, 12, (sum) => {
+                expect(sum).toBe(46).toBeA('number');
+                done(); // Need this to test all async functions
+            });
+        });
     });
+    
+    describe('#square', () => {
+        it('should return the square of a number', () => {
+            const res = utils.square(9);
+        
+            expect(res)
+                .toBeA('number')
+                .toBe(81);
+        });
+        
+        it('should async square a number', (done) => {
+            utils.asyncSquare(6, (res) => {
+                expect(res).toBe(36).toBeA('number');
+                done();
+            });
+        });
+    });    
 });
 
-it('should return the square of a number', () => {
-    const res = utils.square(9);
 
-    expect(res)
-        .toBeA('number')
-        .toBe(81);
-});
-
-it('should async square a number', (done) => {
-    utils.asyncSquare(6, (res) => {
-        expect(res).toBe(36).toBeA('number');
-        done();
-    });
-});
 
 // it('should expect some values', () => {
 //     //expect(12).toNotBe(11); 
